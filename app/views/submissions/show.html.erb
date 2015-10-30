@@ -1,0 +1,23 @@
+<% content_for :title do %>
+  <%= submission.name %> by <%= submission.user.name %>
+<% end %>
+
+<div class="row">
+  <div class="col-lg-3">
+    <h1><%= submission.name %></h1>
+    <p><strong>Brewed By:</strong> <%= submission.user.name %></p>
+    <dl>
+      <dt>IBUs</dt>
+      <dd><%= submission.ibu %></dd>
+      <dt>ABV</dt>
+      <dd><%= submission.abv %></dd>
+      <dt>SRM</dt>
+      <dd><%= submission.srm %></dd>
+    </dl>
+  </div>
+
+  <div class="col-lg-7 col-lg-offset-2">
+    <h3>Recipe</h3>
+    <%= sanitize(submission.recipe_html) %>
+  </div>
+</div>

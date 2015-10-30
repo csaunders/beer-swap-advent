@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="to-background">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Gtabrews Advent Calendar" %></title>
@@ -12,11 +12,9 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <main role="main">
-       <div class="container">
-         <%= render 'layouts/messages' %>
-         <%= yield %>
-       </div>
-    </main>
+    <div class="no-bg container-fluid">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </div>
   </body>
 </html>

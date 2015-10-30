@@ -1,0 +1,18 @@
+<tr>
+  <td class="text-center">
+    <%= pretty_day(visible.day) %>
+    <%= image_tag(visible.user.profile_pic, class: "img-circle img-responsive") %>
+    <%= visible.user.name %>
+  </td>
+  <td>
+    <dl class="dl-horizontal">
+      <dt>Name</dt>
+      <dd><%= visible.name %></dd>
+      <dt>IBU</dt>
+      <dd><%= visible.ibu %></dd>
+      <dt>ABV</dt>
+      <dd><%= visible.abv %></dd>
+      <dd><%= link_to 'Recipe Details', submission_path(visible) %></dd>
+    </dl>
+  </td>
+</tr>

@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+$map-location: image-path("toronto-map-optim.jpg");
+
+.to-background {
+  background: url($map-location) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.no-bg {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 11em;
+  background: url($map-location) no-repeat center center fixed;
+  background-size: cover;
+}
