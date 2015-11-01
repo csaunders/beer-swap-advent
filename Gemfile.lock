@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:csaunders/beerxml.git
+  remote: git://github.com/csaunders/beerxml.git
   revision: 83f506d4bb492785f53138d73baed2529ec4cb06
   ref: 83f506d4bb492785f53138d73baed2529ec4cb06
   specs:

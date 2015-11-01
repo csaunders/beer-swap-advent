@@ -20,7 +20,7 @@ gem 'omniauth-facebook'
 gem 'pg'
 gem 'simple_form'
 gem 'redcarpet'
-gem 'nrb-beerxml', git: 'git@github.com:csaunders/beerxml.git', ref: '83f506d4bb492785f53138d73baed2529ec4cb06'
+gem 'nrb-beerxml', github: 'csaunders/beerxml', ref: '83f506d4bb492785f53138d73baed2529ec4cb06'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
