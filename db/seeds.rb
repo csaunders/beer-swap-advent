@@ -5,6 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+puts "Removing Existing Users"
+User.destroy_all
+
+puts "Seeding Database with Sample Data"
 %w(east west).each do |region|
   1.upto(31) do |day|
     user = User.create!(name: "User #{region} #{day}", profile_pic: 'http://graph.facebook.com/100001638846331/picture')

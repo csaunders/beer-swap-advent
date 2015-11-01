@@ -1,3 +1,12 @@
+GIT
+  remote: git@github.com:csaunders/beerxml.git
+  revision: 83f506d4bb492785f53138d73baed2529ec4cb06
+  ref: 83f506d4bb492785f53138d73baed2529ec4cb06
+  specs:
+    nrb-beerxml (0.1.0)
+      activemodel
+      nokogiri
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -307,9 +316,11 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  nrb-beerxml!
   omniauth
   omniauth-facebook
   pg
+  pry
   quiet_assets
   rails (= 4.2.4)
   rails_12factor

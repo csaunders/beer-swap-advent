@@ -7,7 +7,11 @@ class Submission < ActiveRecord::Base
   scope :invisible, -> {where("day > ?", Time.now.beginning_of_day).order(:day)}
 
   def recipe_html
-    markdown.render(recipe)
+    markdown.render(recipe).gsub('<table>', '<table class="table table-striped table-bordered">')
+  end
+
+  def beer_xml=(file)
+    self.recipe = BeerXMLRecipe.new(file).to_markdown
   end
 
   private

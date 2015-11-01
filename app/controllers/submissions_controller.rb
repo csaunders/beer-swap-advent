@@ -13,6 +13,11 @@ class SubmissionsController < ApplicationController
   end
 
   def update
+    users_submission.update_attributes(submission_params)
+    users_submission.beer_xml = beer_xml_file if beer_xml_file
+    users_submission.save
+    flash[:notice] = "#{users_submission.name} has been updated"
+    redirect_to submission_path(users_submission)
   end
 
   def edit
@@ -42,7 +47,7 @@ class SubmissionsController < ApplicationController
   end
 
   def require_owner
-    return if params[:id] == users_submission.id
+    return if submission == users_submission
     flash[:error] = "You do not have permission to do that"
     redirect_to root_path
   end
@@ -57,5 +62,13 @@ class SubmissionsController < ApplicationController
     return if Submission::REGIONS.include?(params[:region])
     flash[:error] = "'#{params[:region]}' is not a valid region"
     redirect_to root_path
+  end
+
+  def submission_params
+    params.require(:submission).permit(:region, :name, :ibu, :abv, :srm, :recipe)
+  end
+
+  def beer_xml_file
+    params.require(:submission).permit(:beer_xml)[:beer_xml]
   end
 end

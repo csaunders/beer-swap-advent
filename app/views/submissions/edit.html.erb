@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Update Your Submission</h1>
+  </div>
+</div>
+
+<%= simple_form_for submission,
+  html: {class: "form-horizontal"},
+  wrapper: :horizontal_input_group,
+  wrapper_mappings: {
+    radio_buttons: :horizontal_radio_and_checkboxes,
+  } do |f| %>
+  <div class="row">
+    <div class="form-inputs">
+      <%= f.input :name, label: "Name of Beer" %>
+      <div class="form-group">
+        <%= f.label :region, class: 'col-sm-3 control-label' %>
+        <div class="col-sm-9">
+        <%= f.collection_radio_buttons :region,
+              [['west', 'West Toronto'], ['east', 'East Toronto']],
+              :first, :last,
+              item_wrapper_class: 'radio-inline' do |b| %>
+              <%= b.radio_button + b.text %>
+        <% end %>
+        </div>
+      </div>
+      <%= f.input :ibu, label: "IBUs" %>
+      <%= f.input :abv, label: "ABV" %>
+      <%= f.input :srm, label: "SRM" %>
+      <div class="form-group">
+        <%= f.label :beer_xml, 'Automatic Recipe Entry via Beer&nbsp;XML'.html_safe, class: 'col-sm-3 control-label' %>
+        <%= f.file_field :beer_xml, class: 'col-sm-9' %>
+      </div>
+      <%= f.input :recipe, label: "Manual Recipe Entry" %>
+    </div>
+
+    <div class="form-actions col-sm-offset-3">
+      <%= f.button :submit, class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
