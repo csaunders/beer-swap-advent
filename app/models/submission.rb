@@ -5,6 +5,7 @@ class Submission < ActiveRecord::Base
 
   scope :visible, -> {where("day <= ?", Time.now.beginning_of_day).order(:day)}
   scope :invisible, -> {where("day > ?", Time.now.beginning_of_day).order(:day)}
+  scope :unknown, -> {where(day: nil)}
 
   def recipe_html
     markdown.render(recipe).gsub('<table>', '<table class="table table-striped table-bordered">')

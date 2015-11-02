@@ -3,6 +3,7 @@
     <tbody>
       <%= render partial: 'visible', collection: submissions.visible %>
       <%= render partial: 'invisible', collection: submissions.invisible %>
+      <%= render partial: 'invisible', collection: submissions.unknown %>
     </tbody>
   </table>
 </div>
