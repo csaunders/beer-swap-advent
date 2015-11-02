@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   def self.create_with_omniauth(auth)
     User.transaction do
-      User.first_or_initialize(uid: auth['uid']).tap do |user|
+      User.where(uid: auth['uid']).first_or_initialize.tap do |user|
         user.provider = auth['provider']
         user.uid = auth['uid']
         if auth['info']
