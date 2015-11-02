@@ -18,12 +18,17 @@ $map-location: image-path("toronto-map-optim.jpg");
 .to-background {
   background: url($map-location) no-repeat center center fixed;
   background-size: cover;
+  width: 100%;
 }
 
 .no-bg {
   padding-left: 0;
   padding-right: 0;
-  padding-top: 11em;
+  padding-top: 4em;
   background: url($map-location) no-repeat center center fixed;
   background-size: cover;
+}
+
+.hero-image {
+  max-height: 500px;
 }
