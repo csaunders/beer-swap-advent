@@ -37,7 +37,11 @@ class SubmissionsController < ApplicationController
   end
 
   def submission
-    Submission.visible.find(params[:id])
+    if params[:id].to_i == users_submission.id
+      users_submission
+    else
+      Submission.visible.find(params[:id])
+    end
   end
 
   def require_user
