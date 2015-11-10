@@ -6,7 +6,8 @@
         <dl class="dl-horizontal text-left">
           <%= render partial: 'submission',
                      collection: submissions,
-                     as: :submission %>
+                     as: :submission,
+                     locals: {region: region} %>
        </dl>
       </div>
     <% end %>
