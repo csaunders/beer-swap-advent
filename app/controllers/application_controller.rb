@@ -3,9 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user
-  helper_method :user_signed_in?
-  helper_method :correct_user?
+  helper_method :current_user, :user_signed_in?, :correct_user?
+  helper_method :administrator?
 
   private
     def current_user
@@ -18,6 +17,10 @@ class ApplicationController < ActionController::Base
 
     def user_signed_in?
       return true if current_user
+    end
+
+    def administrator?
+      current_user && ENV['ADMIN_IDS'].split(',').include?(current_user.uid)
     end
 
     def correct_user?

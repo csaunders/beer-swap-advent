@@ -5,6 +5,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    get "/", to: 'submissions#index', as: :dashboard
+    put "/", to: 'submissions#update', as: :update_submissions
+  end
+
   root to: 'visitors#index'
   get '/your-submission' => 'submissions#your_submission', :as => :your_submission
   get '/auth/:provider/callback' => 'sessions#create'

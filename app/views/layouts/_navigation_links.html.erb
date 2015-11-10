@@ -1,4 +1,7 @@
 <%# add navigation links to this file %>
+<% if administrator? %>
+  <li><%= link_to 'Admin', admin_dashboard_path %></li>
+<% end %>
 <% if user_signed_in? %>
   <li><%= link_to 'Your Submission', your_submission_path %></li>
   <li><%= link_to 'Sign out', signout_path %></li>

@@ -1,0 +1,17 @@
+<div class="row text-center">
+  <%= form_tag admin_update_submissions_path, method: :put do %>
+    <% sectioned_regions.each do |region, submissions| %>
+      <div class="col-lg-6">
+        <h1><%= "#{region}".titleize %> Toronto</h1>
+        <dl class="dl-horizontal text-left">
+          <%= render partial: 'submission',
+                     collection: submissions,
+                     as: :submission %>
+       </dl>
+      </div>
+    <% end %>
+    <div class="col-xs-offset-3 col-xs-6">
+      <%= submit_tag "Update", class: 'btn btn-success btn-block' %>
+    </div>
+  <% end %>
+</div>

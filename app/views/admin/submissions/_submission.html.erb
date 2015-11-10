@@ -1,0 +1,21 @@
+<dt><%= submission.user.name %></dt>
+<dd>
+  <div class="input-group">
+    <%= text_field_tag "day[#{submission.id}]", submission.day || '2015-12-01', class: "form-control", id: "datepicker-#{submission_counter}" %>
+    <span class="input-group-addon" id="calendar-<%= submission_counter %>">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+  </div>
+  <script type="text/javascript">
+    $(function(){
+      var picker = $("#datepicker-<%= submission_counter %>");
+      var submissionTime = "<%= submission.day ? submission.day.strftime('%F') : '2015-12-01'%>";
+      picker.datetimepicker({
+        locale: 'en-ca'
+      });
+      $("#calendar-<%= submission_counter %>").click(function(){
+        picker.focus();
+      });
+    })
+  </script>
+</dd>

@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require moment-with-locales
+//= require bootstrap-datetimepicker
 //= require_tree .
