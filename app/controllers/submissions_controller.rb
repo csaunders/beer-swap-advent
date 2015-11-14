@@ -4,7 +4,7 @@ class SubmissionsController < ApplicationController
   before_action :require_submission, only: :your_submission
   before_action :require_region, only: [:index]
 
-  helper_method :submissions, :submission
+  helper_method :submissions, :submission, :feedbacks, :user_feedback
 
   def index
   end
@@ -29,15 +29,29 @@ class SubmissionsController < ApplicationController
 
   private
   def users_submission
-    @submission ||= current_user.submission
+    @users_submission ||= current_user.submission if user_signed_in?
   end
 
   def submissions
-    @submissions ||= params[:region] == 'west' ? Submission.west : Submission.east
+    @submissions ||= begin
+      submissions = params[:region] == 'west' ? Submission.west : Submission.east
+      submissions.includes(:user)
+    end
+  end
+
+  def feedbacks
+    return unless submission == users_submission
+    @feedbacks ||= submission.feedbacks.includes(:user)
+  end
+
+  def user_feedback
+    return unless user_signed_in?
+    return if submission == users_submission
+    @user_feedback ||= current_user.feedbacks.where(submission_id: submission.id).first_or_initialize
   end
 
   def submission
-    if params[:id].to_i == users_submission.id
+    @submission ||= if users_submission && users_submission.id == params[:id].to_i
       users_submission
     else
       Submission.visible.find(params[:id])

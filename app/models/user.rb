@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_one :submission, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 
   def self.create_with_omniauth(auth)
     User.transaction do

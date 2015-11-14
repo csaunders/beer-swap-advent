@@ -1,0 +1,4 @@
+<%= simple_form_for [submission, user_feedback], method: :post do |f| %>
+  <%= f.input :body, label: "Let #{submission.user.name} know what you think", as: :text %>
+  <%= f.submit "Submit", class: 'btn btn-primary' %>
+<% end %>

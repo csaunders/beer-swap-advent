@@ -3,6 +3,11 @@ Rails.application.routes.draw do
     collection do
       get "/all/:region" => "submissions#index", :as => :region
     end
+    resources :feedbacks, only: %i(create update) do
+      member do
+        post "/" => "feedbacks#create"
+      end
+    end
   end
 
   namespace :admin do

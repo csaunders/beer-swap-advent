@@ -1,6 +1,7 @@
 class Submission < ActiveRecord::Base
   REGIONS = %w(east west)
   belongs_to :user
+  has_many :feedbacks, dependent: :destroy
   enum region: {east: 1, west: 2}
 
   scope :visible, -> {where("day <= ?", Time.now.beginning_of_day).order(:day)}
