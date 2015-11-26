@@ -9,8 +9,8 @@ class Admin::SubmissionsController < AdminAreaController
   private
   def sectioned_regions
     @sectioned_regions ||= {
-      west: Submission.west.includes(:user),
-      east: Submission.east.includes(:user)
+      west: Submission.west.includes(:user).partition { |sub| sub.day.blank? },
+      east: Submission.east.includes(:user).partition { |sub| sub.day.blank? }
     }
   end
 

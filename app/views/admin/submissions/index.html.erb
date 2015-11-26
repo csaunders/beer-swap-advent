@@ -1,14 +1,16 @@
 <div class="row text-center">
   <%= form_tag admin_update_submissions_path, method: :put do %>
-    <% sectioned_regions.each do |region, submissions| %>
+    <% sectioned_regions.each do |region, sectioned_submissions| %>
       <div class="col-lg-6">
         <h1><%= "#{region}".titleize %> Toronto</h1>
-        <dl class="dl-horizontal text-left">
-          <%= render partial: 'submission',
-                     collection: submissions,
-                     as: :submission,
-                     locals: {region: region} %>
-       </dl>
+        <% sectioned_submissions.each do |submissions| %>
+          <dl class="dl-horizontal text-left">
+              <%= render partial: 'submission',
+                         collection: submissions,
+                         as: :submission,
+                         locals: {region: region} %>
+         </dl>
+       <% end %>
       </div>
     <% end %>
     <div class="col-xs-offset-3 col-xs-6">
