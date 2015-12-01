@@ -4,7 +4,12 @@ class BeerXMLRecipe
 
   def initialize(file)
     xml = StringIO.new(file.read)
-    @document = parse(xml)
+    @document = parse(xml).tap do |doc|
+      doc.mash ||= OpenStruct.new(mash_steps: [])
+      doc.yeasts ||= []
+      doc.fermentables ||= []
+      doc.hops ||= []
+    end
   end
 
   def to_markdown
@@ -44,8 +49,12 @@ class BeerXMLRecipe
   private
 
   def fermentables
+    total_weight = document.fermentables.reduce(0) do |memo, f|
+      memo + f.amount
+    end
     document.fermentables.map do |f|
-      %W(#{f.amount} #{f.name} #{f.notes})
+      percentage_grist = "%5.2f" % ((f.amount / total_weight) * 100)
+      %W(#{percentage_grist}% #{f.name} #{f.notes})
     end
   end
 
